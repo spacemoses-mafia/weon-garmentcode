@@ -5,9 +5,9 @@ This is the fork of GarmentCode for Weon.
 
 ```
 git clone https://github.com/maria-korosteleva/NvidiaWarp-GarmentCode.git
-git clone https://github.com/maria-korosteleva/GarmentCode.git
+git clone git@github.com:spacemoses-mafia/weon-garmentcode.git
 
-cd GarmentCode
+cd weon-garmentcode
 uv venv --python 3.11
 source .venv/bin/activate
 uv pip install pygarment
