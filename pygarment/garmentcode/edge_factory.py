@@ -217,6 +217,45 @@ class CurveEdgeFactory:
 
         return CurveEdge(start, end, control_points=[cp], relative=True)
 
+    @staticmethod
+    def interpolate_with_tangents(
+        start: list[float],
+        end: list[float],
+        initial_guess: list[float] | None = None,
+        target_tan0: list[float] | None = None,
+        target_tan1: list[float] | None = None,
+        pre_start: list[float] | None = None,
+        post_end: list[float] | None = None
+    ) -> CurveEdge:
+        """
+        Interpolate a curve between start and end with the given initial guess and pre_start and post_end tangents.
+
+        Args:
+            start: Start point of the curve
+            end: End point of the curve
+            initial_guess: Initial guess for the control point
+            target_tan0: Tangent at the start point
+            target_tan1: Tangent at the end point
+            pre_start: Tangent at the start point
+            post_end: Tangent at the end point
+        """
+        
+        target_tan0 = None
+        target_tan1 = None
+        if pre_start is not None:
+            target_tan0 = [start[0] - pre_start[0], start[1] - pre_start[1]]
+        if post_end is not None:
+            target_tan1 = [post_end[0] - end[0], post_end[1] - end[1]]
+
+        return CurveEdgeFactory.curve_from_tangents(
+            start,
+            end,
+            target_tan0=target_tan0,
+            target_tan1=target_tan1,
+            initial_guess=initial_guess
+        )
+
+
 class EdgeSeqFactory:
     """Create EdgeSequence objects for some common edge sequence patterns
     """

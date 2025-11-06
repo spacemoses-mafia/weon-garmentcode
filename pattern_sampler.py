@@ -27,6 +27,7 @@ def get_command_args():
     parser.add_argument('--batch_id', '-b', help='id of a sampling batch', type=int, default=None)
     parser.add_argument('--size', '-s', help='size of a sample', type=int, default=10)
     parser.add_argument('--name', '-n', help='Name of the dataset', type=str, default='data')
+    parser.add_argument('--design', '-d', help='Name of the design file', type=str, default='pants.yaml')
     parser.add_argument('--replicate', '-re', help='Name of the dataset to re-generate. If set, other arguments are ignored', type=str, default=None)
     
     args = parser.parse_args()
@@ -310,7 +311,7 @@ if __name__ == '__main__':
     else:  # New sample
         props = Properties()
         props.set_basic(
-            design_file='./assets/design_params/default.yaml',
+            design_file=f'./assets/design_params/{args.design}.yaml',
             body_default='mean_all',
             body_samples='5000_body_shapes_and_measures', 
             size=args.size,

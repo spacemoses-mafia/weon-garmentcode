@@ -529,7 +529,9 @@ class BasicPattern(object):
                 intersect_t = [el for el in intersect_t if el is not None]
 
                 if intersect_t:  # Any other case of intersections
+                    print(f'{panel_name} is self-intersecting!!')
                     return True      
+
         return False 
 
 # NOTE: Deprecated. Preserved for backward compatibility 
