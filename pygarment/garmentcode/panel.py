@@ -1,7 +1,9 @@
+import os
+
+from scipy.spatial.transform import Rotation as R
 import numpy as np
 from copy import copy
 from argparse import Namespace
-from scipy.spatial.transform import Rotation as R
 
 from pygarment.pattern.core import BasicPattern
 from pygarment.garmentcode.base import BaseComponent
@@ -9,6 +11,7 @@ from pygarment.garmentcode.edge import Edge, EdgeSequence, CircleEdge
 from pygarment.garmentcode.utils import close_enough, vector_align_3D
 from pygarment.garmentcode.operators import cut_into_edge
 from pygarment.garmentcode.interface import Interface
+from pygarment.pattern.wrappers import VisPattern
 
 
 class Panel(BaseComponent):
@@ -406,3 +409,39 @@ class Panel(BaseComponent):
         verts_3d = np.asarray([self.point_to_3D(v) for v in verts_2d])
 
         return verts_3d.min(axis=0), verts_3d.max(axis=0)
+
+    def save_as_image(self, png_filename, svg_filename=None, 
+                     with_text=True, view_ids=True, margin=2):
+        """Export panel to PNG image for debugging/visualization
+        
+        Parameters:
+            * png_filename: Path where to save the PNG image
+            * svg_filename: Optional path for SVG file (auto-generated if None)
+            * with_text: Include panel names in the image
+            * view_ids: Include vertex and edge IDs in the image
+            * margin: Margin around the panel in cm
+        
+        Returns:
+            Path to the saved PNG file
+        """
+        
+        # Convert panel to pattern
+        basic_pattern = self.assembly()
+        
+        # Create VisPattern and copy pattern data
+        vis_pattern = VisPattern()
+        vis_pattern.name = self.name
+        vis_pattern.pattern = basic_pattern.pattern
+        vis_pattern.spec = basic_pattern.spec
+        
+        # Generate SVG filename if not provided
+        if svg_filename is None:
+            svg_filename = os.path.splitext(png_filename)[0] + '.svg'
+        
+        # Save as image
+        vis_pattern._save_as_image(svg_filename, png_filename, 
+                                   with_text=with_text, 
+                                   view_ids=view_ids, 
+                                   margin=margin)
+        
+        return png_filename

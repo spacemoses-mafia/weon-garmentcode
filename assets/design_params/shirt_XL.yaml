@@ -1,13 +1,13 @@
 design:
   meta:
     upper:
-      v: null
+      v: Shirt
       type: select_null
     wb:
       v: null
       type: select_null
     bottom:
-      v: Pants
+      v: null
       type: select_null
   waistband:
     waist:
@@ -17,6 +17,42 @@ design:
       v: 0.2
       type: float
   shirt:
+    smallest_width:
+      v: 38
+      type: float
+    width_chest:
+      v: 53
+      type: float
+    width_waist:
+      v: 49
+      type: float
+    width_hip:
+      v: 54
+      type: float
+    neck_to_shoulder_distance:
+      v: 12.6
+      type: float
+    neck_width:
+      v: 17.5
+      type: float
+    shoulder_slant:
+      v: 3.5
+      type: float
+    waist_over_bust_line_height:
+      v: 46.05
+      type: float
+    back_width:
+      v: 39.5
+      type: float
+    front_length:
+      v: 68
+      type: float
+    back_length:
+      v: 74
+      type: float
+    scye_depth:
+      v: 24.1
+      type: float
     strapless:
       v: false
       type: bool
@@ -37,13 +73,13 @@ design:
       v: CircleNeckHalf
       type: select
     width:
-      v: 0.2
+      v: 17.5
       type: float
     fc_depth:
-      v: 0.4
+      v: 10
       type: float
     bc_depth:
-      v: 0
+      v: 2
       type: float
     fc_angle:
       v: 95
@@ -93,13 +129,19 @@ design:
       v: ArmholeCurve
       type: select
     length:
-      v: 0.3
+      v: 65
+      type: float
+    bicep_width:
+      v: 18.9
+      type: float
+    elbow_width:
+      v: 14.8
       type: float
     connecting_width:
-      v: 0.2
+      v: 0.1
       type: float
     end_width:
-      v: 1.0
+      v: 10
       type: float
     sleeve_angle:
       v: 10
@@ -357,40 +399,40 @@ design:
       type: float
   pants:
     front_rise:
-      v: 32
+      v: 28
       type: float
     back_rise:
-      v: 42
+      v: 36
       type: float
     length_waist_to_hip:
-      v: 29
+      v: 25
       type: float
     length_1:
-      v: 37
+      v: 33
       type: float
     length_2:
-      v: 21
+      v: 18
       type: float
     length_3:
-      v: 21
+      v: 20
       type: float
     waist:
-      v: 44
+      v: 32
       type: float
     width_1:
-      v: 29.5
+      v: 23.5
       type: float
     width_2:
-      v: 19.5
+      v: 15.5
       type: float
     width_3:
-      v: 17.5
+      v: 14.7
       type: float
     width_4:
-      v: 13.5
+      v: 10.7
       type: float
     width_hips:
-      v: 55
+      v: 43
       type: float
     width_gusset_crotch:
       v: 7

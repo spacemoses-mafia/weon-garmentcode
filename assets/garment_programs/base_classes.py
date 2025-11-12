@@ -1,9 +1,13 @@
+import math
+
 import pygarment as pyg
 
 class BaseBodicePanel(pyg.Panel):
     """Base class for bodice panels that defines expected interfaces and common functions"""
     def __init__(self, name, body, design) -> None:
         super().__init__(name)
+        self.neck_to_shoulder_delta_x = math.sqrt(design['neck_to_shoulder_distance']['v'] ** 2 - design['shoulder_slant']['v'] ** 2)
+        self.neck_width = design['neck_width']['v']
         self.body = body
         self.design = design
         
@@ -34,7 +38,7 @@ class BaseBodicePanel(pyg.Panel):
         if y < 0:
             x, y = -x, -y
 
-        return (level * x / y) + self.body['shoulder_w'] / 2
+        return (level * x / y) + self.neck_to_shoulder_delta_x + self.neck_width / 2
 
 
 class BaseBottoms(pyg.Component):

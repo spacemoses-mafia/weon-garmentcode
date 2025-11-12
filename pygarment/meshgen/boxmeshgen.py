@@ -778,8 +778,8 @@ class BoxMesh(wrappers.VisPattern):
             if not panel.is_manifold():
                 raise DegenerateTrianglesError(
                     f'{self.__class__.__name__}::ERROR::{self.name}::{panel.panel_name}:'
-                    ':panel contains degenerate triangles'
-                )
+                     ':panel contains degenerate triangles'
+                    )
 
     # !SECTION
     # SECTION -- Merge mesh vertices in stitches
